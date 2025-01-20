@@ -109,6 +109,7 @@
 import { fetchList, deleteUser, updateUser } from '@/api/user'
 import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 import Sticky from '@/components/Sticky'
+import store from '@/store'
 
 const defaultForm = {
   id: undefined,
@@ -160,7 +161,7 @@ export default {
       this.checkedList = selection
     },
     checkSelectable(row) {
-      if (row.roleList.includes('admin')) {
+      if (store.getters.roles.includes('admin')) {
         return false
       } else {
         return true

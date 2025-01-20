@@ -107,7 +107,7 @@ export const asyncRoutes = [
         path: 'list',
         component: () => import('@/views/category/list'),
         name: 'CategoryList',
-        meta: { title: '分类列表', roles: ['admin', 'user'] }
+        meta: { title: '分类管理', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -117,8 +117,8 @@ export const asyncRoutes = [
     redirect: '/message/list',
     name: 'message',
     meta: {
-      title: '用户管理',
-      icon: 'user',
+      title: '留言管理',
+      icon: 'message',
       roles: ['admin', 'user']
     },
     children: [
@@ -126,7 +126,7 @@ export const asyncRoutes = [
         path: 'list',
         component: () => import('@/views/message/list'),
         name: 'MessageList',
-        meta: { title: '用户列表', roles: ['admin', 'user'] }
+        meta: { title: '留言管理', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -145,7 +145,7 @@ export const asyncRoutes = [
         path: 'list',
         component: () => import('@/views/user/list'),
         name: 'UserList',
-        meta: { title: '用户列表', roles: ['admin'] }
+        meta: { title: '用户管理', roles: ['admin'] }
       }
     ]
   },
