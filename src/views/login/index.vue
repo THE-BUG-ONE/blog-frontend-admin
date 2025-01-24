@@ -31,7 +31,7 @@
             ref="password"
             v-model="loginForm.password"
             :type="passwordType"
-            placeholder="Password"
+            placeholder="输入密码"
             name="password"
             tabindex="2"
             auto-complete="on"
@@ -40,17 +40,23 @@
             @keyup.enter.native="handleLogin"
           />
           <span class="show-pwd" @click="showPwd">
-            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" style="fill: #fff;" />
           </span>
         </el-form-item>
       </el-tooltip>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
-
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:10px;background: rgba(0, 0, 0, 0.5);" @click.native.prevent="handleLogin">
+        登录
+      </el-button>
+      <router-link to="/register">
+        <el-button type="success" style="width:100%;margin:0 0 30px 0;background: rgba(0, 0, 0, 0.5);">
+          注册
+        </el-button>
+      </router-link>
     </el-form>
 
     <div class="tips">
-      <el-row>
+      <el-row class="tips-table">
         <el-row>
           <el-col :span="8">username: admin</el-col>
           <el-col :span="8">password: 123456</el-col>
@@ -65,11 +71,6 @@
           <el-col :span="8">username: test</el-col>
           <el-col :span="8">password: 123456</el-col>
           <el-col :span="8">role: test(测试用户)</el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="8">admin: 所有权限</el-col>
-          <el-col :span="8">user: 用户管理外所有权限</el-col>
-          <el-col :span="8">role: 浏览首页权限</el-col>
         </el-row>
       </el-row>
     </div>
@@ -190,6 +191,10 @@ $cursor: #fff;
 
 /* reset element-ui css */
 .login-container {
+
+  background: url('https://img-baofun.zhhainiao.com/fs/51312cb9165481c637bcbfd39d359bd6.jpg');
+  background-size: cover;
+
   .el-input {
     display: inline-block;
     height: 47px;
@@ -214,6 +219,7 @@ $cursor: #fff;
   }
 
   .el-form-item {
+    height: 47px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(0, 0, 0, 0.1);
     border-radius: 5px;
@@ -237,7 +243,7 @@ $light_gray:#eee;
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 100px 35px 0;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -246,15 +252,22 @@ $light_gray:#eee;
     align-self: center;
     width: 60%;
     font-size: 14px;
-    color: #fff;
+    color: #bfbfbf;
     margin: 0 auto;
 
+    .tips-table {
+      border-radius: 20px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.2em 0 0.2em 0;
+    }
+
     .el-row .el-row:first-of-type {
-      color: #d25d5d;
+      color: #9f0000;
     }
 
     .el-col {
-      padding-left: 10%;
+      padding: 1% 4% 1% 4%;
     }
   }
 

@@ -45,3 +45,19 @@ export function deleteUser(data) {
     data
   })
 }
+
+export function register(data) {
+  return request({
+    url: '/register',
+    method: 'post',
+    data
+  })
+}
+
+export function getCode(data) {
+  return request({
+    url: '/code',
+    method: 'get',
+    data
+  })
+}
