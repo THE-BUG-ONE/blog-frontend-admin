@@ -54,10 +54,10 @@ export function register(data) {
   })
 }
 
-export function getCode(data) {
+export function getCode(email) {
   return request({
     url: '/code',
     method: 'get',
-    data
+    params: { email }
   })
 }
