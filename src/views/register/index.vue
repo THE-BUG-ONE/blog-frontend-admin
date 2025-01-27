@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import { getCode } from '@/api/user'
+import { getCode, register } from '@/api/user'
 
 export default {
   name: 'Register',
@@ -238,8 +238,19 @@ export default {
       this.$refs.registerForm.validate(valid => {
         if (valid) {
           this.loading = true
-          this.$store.dispatch('user/register', this.registerForm).then(() => {
-            this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+          register(this.registerForm).then(response => {
+            if (response.code === 200) {
+              this.$message({
+                message: '用户注册成功',
+                type: 'success'
+              })
+              this.$router.push({ path: '/login', query: this.otherQuery })
+            } else {
+              this.$message({
+                message: '用户注册失败',
+                type: 'error'
+              })
+            }
             this.loading = false
           }).catch(() => {
             this.loading = false
@@ -252,17 +263,17 @@ export default {
     },
     getCode() {
       if (!this.timer) {
-        // this.count = 60
-        // this.show = false
-        // this.timer = setInterval(() => {
-        //   if (this.count > 0 && this.count <= 60) {
-        //     this.count--
-        //   } else {
-        //     this.show = true
-        //     clearInterval(this.timer)
-        //     this.timer = null
-        //   }
-        // }, 1000)
+        this.count = 60
+        this.show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= 60) {
+            this.count--
+          } else {
+            this.show = true
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
         this.$refs.registerForm.validateField(['email'], valid => {
           if (!valid) {
             getCode(this.registerForm.email).then(response => {
